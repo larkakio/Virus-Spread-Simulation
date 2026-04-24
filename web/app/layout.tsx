@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   description:
     "Contain the outbreak — swipe to deploy treatment pulses. Base on-chain check-in.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://virus-spread-simulation-jet.vercel.app",
   ),
   formatDetection: { telephone: false },
   icons: { icon: "/app-icon.jpg" },
