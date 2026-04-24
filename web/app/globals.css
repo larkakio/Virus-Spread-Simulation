@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-vss-bg: #020617;
+  --color-vss-panel: rgba(3, 7, 18, 0.82);
+  --font-sans: var(--font-rajdhani);
+  --font-orbit: var(--font-orbit);
+}
+
+@layer base {
+  html,
+  body {
+    min-height: 100dvh;
+  }
+  body {
+    background: radial-gradient(ellipse 120% 80% at 50% 0%, #0c4a6e 0%, transparent 55%),
+      radial-gradient(ellipse 100% 60% at 100% 100%, #581c87 0%, transparent 45%),
+      #020617;
+    color: #e0f2fe;
+    font-family: var(--font-rajdhani), system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-orbit), var(--font-rajdhani), sans-serif;
+  }
+
+  .cyber-hud-grid {
+    background-image: linear-gradient(
+        rgba(34, 211, 238, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px, 24px 24px;
+  }
+
+  .scanlines::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.06;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.4) 2px,
+      rgba(0, 0, 0, 0.4) 3px
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scanlines::before {
+      display: none;
+    }
+  }
+
+  .cyber-glass {
+    background: linear-gradient(145deg, rgba(8, 47, 73, 0.35) 0%, rgba(2, 6, 23, 0.85) 100%);
+    backdrop-filter: blur(16px) saturate(1.2);
+    box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.12),
+      inset 0 1px 0 rgba(34, 211, 238, 0.08);
+  }
+
+  .cyber-button {
+    font-family: var(--font-orbit), var(--font-rajdhani), system-ui, sans-serif;
+    color: #ecfeff;
+    background: linear-gradient(120deg, #083344 0%, #155e75 50%, #4c1d95 100%);
+    border: 1px solid rgba(34, 211, 238, 0.35);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.15), inset 0 0 12px rgba(34, 211, 238, 0.08);
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.45);
+  }
+
+  .cyber-button:disabled {
+    filter: grayscale(0.3);
+  }
+
+  .cell-neon {
+    min-width: 0;
+    min-height: 0;
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.8);
+  }
+
+  .cell-healthy {
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(6, 182, 212, 0.25) 0%,
+      #0f172a 100%
+    );
+    box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.25);
+  }
+
+  .cell-infected {
+    background: radial-gradient(
+      circle at 40% 40%,
+      #f43f5e 0%,
+      #4c0519 100%
+    );
+    box-shadow: inset 0 0 12px rgba(244, 63, 94, 0.45),
+      0 0 8px rgba(244, 63, 94, 0.2);
+  }
+
+  .cell-quarantine {
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+    box-shadow: inset 0 0 0 1px rgba(192, 132, 252, 0.45);
+    position: relative;
+  }
+
+  .cell-quarantine::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: linear-gradient(120deg, transparent 45%, rgba(34, 211, 238, 0.15) 50%, transparent 55%);
+  }
+
+  @keyframes vss-cell-pulse {
+    0%,
+    100% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.25) saturate(1.2);
+    }
+  }
+
+  @keyframes vss-pulse-line {
+    0% {
+      opacity: 0.95;
+    }
+    100% {
+      opacity: 0.15;
+    }
+  }
+
+  .animate-cellPulse {
+    animation: vss-cell-pulse 1.8s ease-in-out infinite;
+  }
+
+  .animate-pulseLine {
+    animation: vss-pulse-line 0.55s ease-out forwards;
+  }
+}
