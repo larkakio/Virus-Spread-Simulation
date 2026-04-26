@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Orbitron, Rajdhani } from "next/font/google";
 import { Web3Provider } from "@/components/Web3Provider";
-import { BaseAppMeta } from "@/components/BaseAppMeta";
+import { publicEnv } from "@/lib/envPublic";
 import "./globals.css";
 
 const orbit = Orbitron({
@@ -27,6 +27,9 @@ export const metadata: Metadata = {
   ),
   formatDetection: { telephone: false },
   icons: { icon: "/app-icon.jpg" },
+  other: {
+    "base:app_id": publicEnv.baseAppId || "69eb0e0ae67b282fc52d2a01",
+  },
 };
 
 export const viewport: Viewport = {
@@ -43,9 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <BaseAppMeta />
-      </head>
+      <head />
       <body
         className={`${orbit.variable} ${rajdhani.variable} scanlines font-sans min-h-dvh antialiased cyber-hud-grid`}
       >
